@@ -16,7 +16,7 @@ CURRENT_DATE=$(date +"%Y%m%d-%H%M")
 BACKUP_FILENAME="$DB_NAME-$CURRENT_DATE.tar.gz"
 
 # Create the backup
-mongodump -h "$DB_HOST" -d "$DB_NAME" -u "$DB_USER" -p "$DB_PASS" -o "$BACKUP_PATH"
+mongodump -h "$DB_HOST" -d "$DB_NAME" -u "$DB_USER" -p "$DB_PASS" -o "$BACKUP_PATH" && curl -X POST --header ‘Content-Type: application/json' --header 'Accept: application/vnd.pagerduty+json;version=2' --header 'From: admin@idecisiongames.com' --header "Authorization: Token token=$PAGERDUTY_TOKEN" -d '{"incident":{"type":"incident","title":"Backup is done.","service":{"id":"PONW4BQ","type":"service_reference"}}}' 'https://api.pagerduty.com/incidents'
 cd $BACKUP_PATH || exit
 
 # Archive and compress
