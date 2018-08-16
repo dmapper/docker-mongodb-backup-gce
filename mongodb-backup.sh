@@ -8,8 +8,6 @@ DB_NAME="$MONGO_DATABASE"
 DB_USER="$MONGO_USER"
 DB_PASS="$MONGO_PASS"
 BUCKET_NAME="$BUCKET"
-PD_TOKEN="$PAGERDUTY_TOKEN"
-PD_SERVICE="$PAGERDUTY_SERVICE"
 
 # Path in which to create the backup (will get cleaned later)
 BACKUP_PATH="/mnt/data/dump/"

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+PD_TOKEN="$PAGERDUTY_TOKEN"
+PD_SERVICE="$PAGERDUTY_SERVICE"
+
 get_post_data()
 {
   cat <<EOF

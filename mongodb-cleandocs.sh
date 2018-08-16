@@ -7,8 +7,6 @@ DB_HOST="$MONGO_HOST"
 DB_NAME="$MONGO_DATABASE"
 DB_USER="$MONGO_USER"
 DB_PASS="$MONGO_PASS"
-PD_TOKEN="$PAGERDUTY_TOKEN"
-PD_SERVICE="$PAGERDUTY_SERVICE"
 
 # Connect to mongo
 mongo --quiet -u "$DB_USER" -p "$DB_PASS" -h "$DB_HOST" || send_notification [IDG Clean Docs] Couldn't Connect to DB.
