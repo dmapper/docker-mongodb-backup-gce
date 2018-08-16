@@ -27,7 +27,7 @@ mongo --quiet -u "$DB_USER" -p "$DB_PASS" -h "$DB_HOST" || send_notification [ID
 use "$DB_NAME"
 
 # Clean ops
-db.getCollectionNames().forEach(function (c) {if(c.indexOf('o_') < 0) return; db[c].remove(({'m.ts': {'$lt': new Date().getTime() - 7 * 24 * 60 * 60 * 1000}}));}) || send_notification IDG Ops Cleaning Failed
+db.getCollectionNames().forEach(function (c) {if(c.indexOf('o_') < 0) return; db[c].remove(({'m.ts': {'$lt': new Date().getTime() - 7 * 24 * 60 * 60 * 1000}}));}) || send_notification IDG Ops Cleaning Failed.
 
 # Clean tasks
 db.tasks.remove(({'createdAt': {'$lt': new Date().getTime() - 24 * 60 * 60 * 1000}})) || send_notification IDG Tasks Cleaning Failed.
