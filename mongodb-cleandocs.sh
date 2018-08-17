@@ -1,24 +1,12 @@
 #!/bin/bash
 
+source ./send-notification.sh
+
 # Settings
 DB_HOST="$MONGO_HOST"
 DB_NAME="$MONGO_DATABASE"
 DB_USER="$MONGO_USER"
 DB_PASS="$MONGO_PASS"
-PD_TOKEN="$PAGERDUTY_TOKEN"
-PD_SERVICE="$PAGERDUTY_SERVICE"
-
-get_post_data()
-{
-  cat <<EOF
-{"incident":{"type":"incident","title":"$1","service":{"id":"$PD_SERVICE","type":"service_reference"}}}
-EOF
-}
-
-send_notification()
-{
-  curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/vnd.pagerduty+json;version=2' --header 'From: admin@idecisiongames.com' --header "Authorization: Token token=$PD_TOKEN" -d "$(get_post_data "$1")" 'https://api.pagerduty.com/incidents'
-}
 
 # Connect to mongo
 mongo --quiet -u "$DB_USER" -p "$DB_PASS" -h "$DB_HOST" || send_notification [IDG Clean Docs] Couldn't Connect to DB.
