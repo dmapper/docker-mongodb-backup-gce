@@ -28,6 +28,9 @@ RUN curl -s -O https://storage.googleapis.com/pub/gsutil.tar.gz && \
 
 ENV CRON_TIME "0 1 * * *"
 
+COPY ./send-notification.sh /
+RUN chmod +x /send-notification.sh
+
 COPY ./mongodb-backup.sh /
 RUN chmod +x /mongodb-backup.sh
 
