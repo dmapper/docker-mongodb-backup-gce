@@ -20,7 +20,10 @@ default_api_version = 1
 default_project_id = $gs_project_id
 EOF
 
-echo "$TIME /mongodb-backup.sh" > /cron/"$DATABASE"
-devcron.py /cron/"$DATABASE"
+echo "$TIME /mongodb-backup.sh" > /cron/"$DATABASE"-backup
+devcron.py /cron/"$DATABASE"-backup
+
+echo "$TIME /mongodb-cleandocs.sh" > /cron/"$DATABASE"-cleandocs
+devcron.py /cron/"$DATABASE"-cleandocs
 
 fg
