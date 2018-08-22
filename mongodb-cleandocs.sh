@@ -6,19 +6,7 @@ source ./send-notification.sh
 DB_HOST="$MONGO_HOST"
 DB_NAME="$MONGO_DATABASE"
 DB_USER="$MONGO_USER"
-DB_PASS="$MONGO_PASS"
 
-# Connect to mongo
-mongo --quiet -u "$DB_USER" -p "$DB_PASS" -h "$DB_HOST" || send_notification [IDG Clean Docs] Couldn't Connect to DB.
-
-# Switch to idg
-use "$DB_NAME"
-
-# Clean ops
-db.getCollectionNames().forEach(function (c) {if(c.indexOf('o_') < 0) return; db[c].remove(({'m.ts': {'$lt': new Date().getTime() - 7 * 24 * 60 * 60 * 1000}}));}) || send_notification IDG Ops Cleaning Failed.
-
-# Clean tasks
-db.tasks.remove(({'createdAt': {'$lt': new Date().getTime() - 24 * 60 * 60 * 1000}})) || send_notification IDG Tasks Cleaning Failed.
-db.o_tasks.remove(({'m.ts': {'$lt': new Date().getTime() - 24 * 60 * 60 * 1000}})) || send_notification IDG Tasks Ops Cleaning Failed.
+mongo "$DB_HOST"/"$DB_NAME" -u "$DB_USER" mongo-commands.js || send_notification IDG Docs Cleaning Failed.
 
 exit
