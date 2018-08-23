@@ -32,13 +32,19 @@ If your server need authentication, set the user of current database.
 Like before but for the password.
 
 #### CRON_TIME
-The **cron time**, the frequency that will generate a new backup, default is `0 1 * * *` every day at 1am (GTM).  
+The **cron time**, the frequency that will generate a new backup, default is `0 1 * * *` every day at 1am (GTM).
 Here is a good [cron generator](http://crontab-generator.org/).
+
+#### PAGERDUTY_TOKEN
+Required for sending notifications
+
+#### PAGERDUTY_SERVICE
+Id of a service that will create incidents
 
 ## License
 None! Use as you want and like.
 
 ---
 
-By Jadson Lourenço - [@jadsonlourenco](https://twitter.com/jadsonlourenco)  
+By Jadson Lourenço - [@jadsonlourenco](https://twitter.com/jadsonlourenco)
 *"Quem tem verdadeiros ideais não sonha."*
