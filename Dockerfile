@@ -38,7 +38,7 @@ COPY ./mongo-commands.js /
 RUN chmod +x /mongo-commands.js
 
 COPY ./mongodb-cleandocs.sh /
-RUN chmod +x mongodb-cleandocs.sh
+RUN chmod +x /mongodb-cleandocs.sh
 
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
