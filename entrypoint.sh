@@ -23,7 +23,4 @@ EOF
 echo "$TIME /mongodb-backup.sh" > /cron/"$DATABASE"-backup
 devcron.py /cron/"$DATABASE"-backup
 
-echo "$TIME /mongodb-cleandocs.sh" > /cron/"$DATABASE"-cleandocs
-devcron.py /cron/"$DATABASE"-cleandocs
-
 fg

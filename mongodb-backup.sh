@@ -30,3 +30,6 @@ echo "Copying $BACKUP_PATH$BACKUP_FILENAME to gs://$BUCKET_NAME/$DB_NAME/"
 echo "Copying finished"
 echo "Removing backup data"
 rm -rf $BACKUP_PATH*
+
+# Clean docs
+. mongodb-cleandocs.sh
