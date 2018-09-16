@@ -18,7 +18,7 @@ CURRENT_DATE=$(date +"%Y%m%d-%H%M")
 BACKUP_FILENAME="$DB_NAME-$CURRENT_DATE.tar.gz"
 
 # Create the backup
-mongodump -h "$DB_HOST" -d "$DB_NAME" -u "$DB_USER" -p "$DB_PASS" -o "$BACKUP_PATH" || send_notification IDG Backup Failed.
+mongodump -h "$DB_HOST" -d "$DB_NAME" -u "$DB_USER" -p "$DB_PASS" -o "$BACKUP_PATH" || send_notification "IDG Backup Failed"
 cd $BACKUP_PATH || exit
 
 # Archive and compress
