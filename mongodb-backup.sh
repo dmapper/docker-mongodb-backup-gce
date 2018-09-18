@@ -32,4 +32,4 @@ echo "Removing backup data"
 rm -rf $BACKUP_PATH*
 
 # Clean docs
-. mongodb-cleandocs.sh
+./mongodb-cleandocs.sh
