@@ -31,14 +31,14 @@ ENV CRON_TIME "0 1 * * *"
 COPY ./send-notification.sh /
 RUN chmod +x /send-notification.sh
 
-COPY ./mongodb-backup.sh /
-RUN chmod +x /mongodb-backup.sh
-
 COPY ./mongo-commands.js /
 RUN chmod +x /mongo-commands.js
 
 COPY ./mongodb-cleandocs.sh /
 RUN chmod +x /mongodb-cleandocs.sh
+
+COPY ./mongodb-backup.sh /
+RUN chmod +x /mongodb-backup.sh
 
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
