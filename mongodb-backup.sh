@@ -33,7 +33,4 @@ rm -rf $BACKUP_PATH*
 
 # Clean docs
 echo "Cleaning docs"
-pwd
 mongo "$DB_HOST"/"$DB_NAME" -u "$DB_USER" /mongo-commands.js || send_notification "IDG Docs Cleaning Failed"
-mongo "$DB_HOST"/"$DB_NAME" -u "$DB_USER" "$(pwd)/mongo-commands.js" || send_notification "IDG Docs Cleaning Failed"
-mongo "$DB_HOST"/"$DB_NAME" -u "$DB_USER" ../mongo-commands.js || send_notification "IDG Docs Cleaning Failed"
