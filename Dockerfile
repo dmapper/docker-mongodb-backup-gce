@@ -15,7 +15,9 @@ RUN add-apt-repository ppa:fkrull/deadsnakes && \
   apt-get install -y python3.5 mercurial && \
   apt-get install -y python-pip
 
-RUN pip install -e hg+https://bitbucket.org/dbenamy/devcron#egg=devcron
+RUN wget https://bitbucket.org/dbenamy/devcron/get/5d2a470.tar.gz && \
+  pip install 5d2a470.tar.gz
+
 RUN mkdir /cron && \
     echo "* * * * * /cron/sample.sh" > /cron/crontab && \
     echo "echo hello world" > /cron/sample.sh && \
