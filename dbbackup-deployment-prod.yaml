@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: mongodb-cron
+  name: mongodb-cron
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: mongodb-cron
+  template:
+    metadata:
+      labels:
+        app: mongodb-cron
+    spec:
+      containers:
+      - image: gcr.io/dm-dev-0/backupmongo:4.1
+        name: mongodb-cron
+        imagePullPolicy: Always
+        env:          
+          - name: PROJECT_ID
+            value: "dm-prod"
+          - name: GS_ID
+            value: "GOOGDIVNAZSJXBKXWSFFOPGA"
+          - name: GS_SECRET
+            value: "R6/CjhnVK78L63Ety86yJSin4CwIiOqXNtj/4lFd"
+          - name: MONGO_HOST
+            value: "rs1/10.142.0.3:27017,10.142.0.4:27017,10.142.0.5:27017"
+          - name: MONGO_DATABASE
+            value: "idg"
+          - name: BUCKET
+            value: "lingua-dm-prod"
+          - name: CRON_TIME
+            value: "0 1 * * *"
+          - name: MONGO4_HOST
+            value: mongodb://10.142.0.3:27017,10.142.0.4:27017,10.142.0.5:27017
+          - name: RS_ID
+            value: rs1
+          - name: MAILGUN_APIKEY
+            value: "api:key-3g4pyj5s1wzdjminqop05x-059kg7rg5"

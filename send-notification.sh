@@ -1,16 +1,10 @@
 #!/bin/bash
+#set -x
 
-PD_TOKEN="$PAGERDUTY_TOKEN"
-PD_SERVICE="$PAGERDUTY_SERVICE"
-
-get_post_data()
-{
-  cat <<EOF
-{"incident":{"type":"incident","title":"$1","service":{"id":"$PD_SERVICE","type":"service_reference"}}}
-EOF
-}
+MAILGUN_APIKEY="$MAILGUN_APIKEY"
+recipients="theolegmakarov@gmail.com"
 
 send_notification()
 {
-  curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/vnd.pagerduty+json;version=2' --header 'From: admin@idecisiongames.com' --header "Authorization: Token token=$PD_TOKEN" -d "$(get_post_data "$1")" 'https://api.pagerduty.com/incidents'
+curl -s --user "$MAILGUN_APIKEY" https://api.mailgun.net/v3/idecisiongames.com/messages -F from=lingua.dev@gmail.com -F to="$recipients" -F subject="$1" -F text="Please check the errors on k8s deployment"
 }
